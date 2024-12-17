@@ -7,9 +7,14 @@ import numpy as np
 from datetime import datetime, timedelta
 
 from issues import issuesinfo
+import graphviz
 
 COLORS = px.colors.qualitative.Plotly
-
+more_colors = {
+    "green": "#4bde9c",
+    "red": "#fb8072",
+    "amber": "#ffed6f"
+}
 
 # ########## TEST SCHEDULE VIEW FUNCTION
 def dashschedule():
@@ -218,44 +223,74 @@ def dashresults():
 
 # ########## REQUIREMENTS VIEW FUNCTION
 def dashreqs():
-    decisionreview = pd.read_csv("reports/Query3_Decisions.csv", index_col=0)
-    decisionreview['ReviewStart'] = pd.to_datetime(decisionreview['ReviewStart'])
-    # Define ReviewEnd as 1 hour after ReviewStart (since no end times are given)
-    decisionreview['ReviewEnd'] = decisionreview['ReviewStart'] + pd.Timedelta(hours=1)
-    # Define a function to extract the week of year
-    decisionreview['Week'] = decisionreview['ReviewStart'].dt.strftime('%Y-W%U')
+    st.subheader("Requirements Summary", divider="orange")
+    breakdown = pd.read_csv("reports/norasatrequirements.csv")
 
-    # Creating the Plotly figure
-    fig = px.timeline(decisionreview, x_start="ReviewStart", x_end="ReviewEnd", y="Review", color="Decision", text="Milestone", hover_name="Milestone",
-                    category_orders={"Review": sorted(decisionreview['Review'].unique(), key=lambda x: str(x))})
+    cols = st.columns([0.7,0.15])
 
-    # Update layout to include a dropdown menu for week selection
-    week_options = decisionreview['Week'].unique()
+    st.dataframe(breakdown.drop(columns=["Results"]).style. \
+                 applymap(lambda x: f'background-color: {more_colors["green"]}' if x == "PASS" \
+                           else (
+                               f'background-color: {more_colors["red"]}' if x == "FAIL"   
+                               else f'background-color: {more_colors["amber"]}'
+                           ), 
+                          subset=["Verification Status"]). \
+                applymap(lambda x: 'color: black'), 
+                 use_container_width=True, hide_index=True)
+    
+    cont = st.container(border=True)
+    cont.subheader("Warnings")
+    for _, row in breakdown.iterrows():
+        req = row["Requirement Name"]
+        verified = row["Verified By"]
+        satisfied = row["Satisfied By"]
+        result = row["Results"]
+        status = row["Verification Status"]
 
-    fig.update_layout(
-        title="Review Schedule",
-        xaxis_title="Time",
-        yaxis_title="Review",
+        if pd.isna(verified):
+            cont.warning(f"Requirement {req} is not verified by any analysis", icon="⚠️")
+        if pd.isna(satisfied):
+            cont.warning(f"Requirement {req} is not satisfied by any mission element", icon="⚠️")
+        if pd.notna(verified) and status != "PASS":
+            cont.error(f"Requirement {req} has not PASSED the analysis")
 
-        updatemenus=[{
-            "buttons": [
-                {
-                    "args": [
-                        {"xaxis.range": [decisionreview[decisionreview['Week'] == week]['ReviewStart'].min() - pd.Timedelta(days=1), decisionreview[decisionreview['Week'] == week]['ReviewEnd'].max() + pd.Timedelta(days=6)]}
-                    ],
-                    "label": week,
-                    "method": "relayout"
-                }
-                for week in week_options
-            ],
-            "direction": "down",
-            "showactive": True,
-            "x": 0.17,
-            "xanchor": "left",
-            "y": 1.15,
-            "yanchor": "top"
-        }]
-    )
-    # insert the created figure in the UI 
-    st.plotly_chart(fig, True)
+    req_choice = st.selectbox("Select Requirement by Name", options=breakdown["Requirement Name"], index=1)
+    target_req = breakdown[breakdown["Requirement Name"] == req_choice]
+
+    dot = graphviz.Digraph(comment='Hierarchy', strict=True)
+    for _, row in target_req.iterrows():
+            req = row["Requirement Name"]
+            verified = row["Verified By"]
+            satisfied = row["Satisfied By"]
+            result = row["Results"]
+            status = row["Verification Status"]
+
+            if pd.notna(req):
+                dot.node(req)
+
+            if pd.notna(verified):
+                if verified not in dot.body:
+                    dot.node(verified)
+                dot.edge(req, verified, label="verified by")
+            
+            if pd.notna(satisfied):
+                if satisfied not in dot.body:
+                    dot.node(satisfied)
+                dot.edge(req, satisfied, label="satisfied by")
+            if pd.notna(result):
+                if result not in dot.body:
+                    dot.node(result)
+                dot.edge(verified, result, label="analysis output")
+            
+            if pd.notna(result) and pd.notna(status):
+                if status not in dot.body:
+                    dot.node(status, shape="box")
+                dot.edge(result, status, label="verification status")
+            
+    cols = st.columns([0.23 ,0.5])
+    cols[0].graphviz_chart(dot, True)
+
+    cols[-1].dataframe(target_req.rename({0: "values", 1: "values", 2: "values", 3: "values", 4: "values"}).T.reset_index(). \
+        style.applymap(lambda x: 'color: black'), use_container_width=True, hide_index=True)
+
    

@@ -15,8 +15,12 @@ from astropy.time import Time
 
 import matplotlib.pyplot as plt
 
+from orbitdecay import plot_decay_graph
+
+
+@st.cache_resource(show_spinner=False)
 def orbitfunc():
-    st.title("Orbit")
+    st.subheader("Orbital Details", divider="violet")
 
     planets = define_main_attractors()
 
@@ -56,7 +60,9 @@ def orbitfunc():
         },
         index=orbits.keys(),
     )
-    st.dataframe(orbits_df.T, use_container_width=True)
+
+    cols = st.columns(2)
+    # st.dataframe(orbits_df.T, use_container_width=True)
 
     # Create an instance of OrbitElements
     initial_orbit_elements = GetPositionVectors(initial_orbit)
@@ -78,14 +84,19 @@ def orbitfunc():
     }
 
 
-    st.subheader("Orbits projection:")
-    fig1 = plotly_orbit_plotter(
-        orbits.values(),
-        attractor,
-        labels=orbits.keys(),
-        positions=positions
-    )
-    st.plotly_chart(fig1, use_container_width=True)
+    # st.subheader("Orbits projection:")
+    with cols[0]:
+        fig1 = plotly_orbit_plotter(
+            orbits.values(),
+            attractor,
+            labels=orbits.keys(),
+            positions=positions
+        )
+        st.plotly_chart(fig1, use_container_width=True)
+    
+    with cols[1]:
+        fig2 = plot_decay_graph()
+        st.plotly_chart(fig2, use_container_width=True)
 
     
 
