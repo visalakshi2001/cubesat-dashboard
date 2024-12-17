@@ -232,7 +232,7 @@ def get_orbit_parameters(_attractor, orbit_name, altitude=500.0, ecc=0.0, inclin
     return orbit_name
 
 @st.cache_data()
-def plotly_orbit_plotter(_orbit_list, _attractor, positions=None, labels=None):
+def plotly_orbit_plotter(_orbit_list, _attractor, positions=None, _labels=None):
     """
     Plots a list of orbits in 3D using plotly.
     Parameters:
@@ -250,10 +250,10 @@ def plotly_orbit_plotter(_orbit_list, _attractor, positions=None, labels=None):
     """
     fig = make_subplots(rows=1, cols=1, specs=[[{"type": "scatter3d"}]])
 
-    if labels is None:
-        labels = ["Orbit"] * len(_orbit_list)
+    if _labels is None:
+        _labels = ["Orbit"] * len(_orbit_list)
 
-    for orbit, label in zip(_orbit_list, labels):
+    for orbit, label in zip(_orbit_list, _labels):
         r = orbit.sample().xyz.T
         x, y, z = r[:, 0].to(u.km).value, r[:, 1].to(u.km).value, r[:, 2].to(u.km).value
         fig.add_trace(
