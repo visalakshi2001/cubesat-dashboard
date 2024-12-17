@@ -29,7 +29,6 @@ def main():
         sysarcfunc()
     with tabs[2]:
         orbitfunc()
-        pass
     with tabs[3]:
         dashschedule()
         dashresults()
