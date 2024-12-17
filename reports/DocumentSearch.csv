@@ -1,0 +1,4 @@
+,DocumentName,TestResult,TestData,TestDataSubject,Value,Unit
+0,Payload Test Data Report,LowPowerTestData,LowPowerTestOutcome,KPP_1,true,
+1,Payload Test Data Report,PayloadTestData,PayloadTest_Site_TempData,PayloadTestSite_Temperature,16.45,degC
+2,Payload Test Data Report,PayloadTestData,Payload_PowerDraw_Measurement,Payload_PowerDraw,106.7,W

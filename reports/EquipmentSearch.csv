@@ -1,0 +1,8 @@
+,Equipment,Test,TestProgram,datetime
+0,Rover_Prototype,AntennaDeploymentTest,Rover_IOTEProgram_Phase2,2024-09-01T12:00:00
+1,Rover_Prototype,MobilityDeploymentTest,Rover_IOTEProgram_Phase2,2024-09-01T12:00:00
+2,Rover_Prototype,PayloadDeploymentTest,Rover_IOTEProgram_Phase2,2024-09-01T12:00:00
+3,Rover_Prototype,TerrainTraversalExercise,Rover_IOTEProgram_Phase2,2024-09-01T12:00:00
+4,Rover_Prototype,Rover_ReliabilityDemo1,,2024-09-01T12:00:00
+5,MarsLander,Rover_ReliabilityDemo1,,2024-09-01T12:00:00
+6,MarsOrbiter,Rover_ReliabilityDemo1,,2024-09-01T12:00:00

@@ -1,0 +1,8 @@
+,Function,SuperFunction,AllocatedTo
+0,Rover_FDIR,,Rover_System
+1,DetectFault,Rover_FDIR,Rover_System
+2,IsolateFault,Rover_FDIR,Rover_System
+3,RecoverFault,Rover_FDIR,Rover_System
+4,Rover_ReceiveTC,,Rover_Comms
+5,Rover_TransmitTM,,Rover_Comms
+6,Rover_Traversal,,Rover_Mobility

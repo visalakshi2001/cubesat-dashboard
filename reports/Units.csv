@@ -1,0 +1,17 @@
+,Unit,Dimension
+0,W,Power
+1,Wh,Capacity
+2,day,Time
+3,degC,Temperature
+4,degF,Temperature
+5,degK,Temperature
+6,degrees,Angle
+7,kilogram,Mass
+8,km,Length
+9,metre,Length
+10,n-a,Dimensionless
+11,na,Boolean
+12,percentage,Efficiency
+13,percentage,Probability
+14,radians,Angle
+15,second,Time

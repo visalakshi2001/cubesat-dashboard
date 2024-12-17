@@ -1,0 +1,8 @@
+,SystemName,SubsystemName,SubsubsystemName
+0,LSNDS,Battery,
+1,LSNDS,Camera,
+2,LSNDS,Chassis,
+3,LSNDS,Controller,IRR
+4,LSNDS,Controller,Speaker
+5,LSNDS,Drive Train,Motor
+6,LSNDS,Drive Train,Wheel

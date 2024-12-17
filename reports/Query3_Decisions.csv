@@ -1,0 +1,11 @@
+,Review,Decision,ReviewStart,Milestone,Data,TestData
+0,SystemRequirementsReview,DecisionA,2024-01-15T12:00:00,MilestoneA,,
+1,SystemFunctionalReview,DecisionB,2024-03-15T12:00:00,MilestoneB,,
+2,InterimDesignReview,IDR_Decision,2024-06-25T12:00:00,MilestoneC,Deployment areas,TE7_TestData
+3,InterimDesignReview,IDR_Decision,2024-06-25T12:00:00,MilestoneC,Deployment areas,TE8_Output
+4,InterimDesignReview,IDR_Decision,2024-06-25T12:00:00,MilestoneC,Human involvement,TE3_Output
+5,InterimDesignReview,IDR_Decision,2024-06-25T12:00:00,MilestoneC,Human involvement,TE5_Output
+6,InterimDesignReview,IDR_Decision,2024-06-25T12:00:00,MilestoneC,Mission operational elements,TE4_Output
+7,InterimDesignReview,IDR_Decision,2024-06-25T12:00:00,MilestoneC,Mission operational elements,TE8_Output
+8,InterimDesignReview,IDR_Decision,2024-06-25T12:00:00,MilestoneC,Path confidence,TE10_Output
+9,InterimDesignReview,IDR_Decision,2024-06-25T12:00:00,MilestoneC,Path confidence,TE11_Output

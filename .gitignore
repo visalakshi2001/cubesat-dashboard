@@ -1,0 +1,7 @@
+
+__pycache__/
+cubesat/
+.streamlit/
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+notebooks/

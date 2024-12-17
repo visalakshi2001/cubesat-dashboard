@@ -1,0 +1,10 @@
+,KCName,SatisfiedBy,Unit,Threshold,Objective,VerificationMethodName
+0,KPP 1,stickyNoteDetectionSuccessRate,percentage,80,90,Path Confidence Test
+1,KPP 2,FalseAlarmRate,percentage,30,10,Path Confidence Test
+2,KPP 3,ClassificationRate,percentage,70,85,Path Confidence Test
+3,KPP 4,FalseClassificationRate,percentage,30,10,Path Confidence Test
+4,KPP 5,PathwayCreationTime,second,600,300,
+5,KSA 1,LSNDS_Mass,kilogram,5,3,Adaptability Simulation 2
+6,KSA 2,remainingCapacity,second,1200,1800,Adaptability Simulation 2
+7,KSA 3,Traction,na,5,3,Adaptability Simulation 2
+8,KSA 4,CoG,degrees,30,70,

@@ -1,0 +1,18 @@
+,Requirement,Text
+0,Requirement_Comms,The Rover shall be capable of transmitting 100Mb/s to the Mars Orbiter...
+1,LUT_EntranceCriteria,
+2,KPP_1,The system shall provide function 1 to a performance level of w
+3,Requirement_Cost,The server shall cost no more than 1000 USD
+4,Requirement_DiskSpace,The server shall have a minimum of 400 Gb disk space
+5,Requirement_MBTSA,Mean time between failures shall be greater than 10000 hours with a confidence value of 99%
+6,Requirement_Vibration,The Rover shall withstand vibration of at least...
+7,CS_Req1,The Rover shall be resistant to cybersecurity risks of type A
+8,CS_Req2,The Rover shall be resistant to cybersecurity risks of type B
+9,KPP_2,The system shall provide function 2 to a performance level of x
+10,KSA_1,The system shall provide function 3 to a performance level of y
+11,KSA_2,The system shall provide function 4 to a performance level of z
+12,TPM1,The system shall provide function 1 with a technical performance measurement of x
+13,TPM2,The system shall provide function 1 with a technical performance measurement of x
+14,TPM3,The system shall provide function 1 with a technical performance measurement of x
+15,TPM4,The system shall provide function 1 with a technical performance measurement of x
+16,IOTE2_Criteria,

@@ -1,0 +1,4 @@
+,Milestone,MilestoneDate,Test,TestEquipment,Acquisition,AcquisitionDate
+0,TestMilestoneA,2024-03-18T12:00:00,ElectricalTest_1,Rover_Prototype,Rover_Prototype_Acquisition,2024-03-01T12:00:00
+1,TestMilestoneA,2024-03-18T12:00:00,ElectricalTest_1,ElectricalTestRig,ElectricalTestRig_Acquisition,2024-03-04T12:00:00
+2,TestMilestoneA,2024-03-18T12:00:00,VibrationTest_1,Rover_Prototype,Rover_Prototype_Acquisition,2024-03-01T12:00:00

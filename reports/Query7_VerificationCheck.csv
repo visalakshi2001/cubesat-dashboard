@@ -1,0 +1,2 @@
+,MissionReq,MissionReqName,SystemQuantity,TestName,TestOutput,TestMeasurement,Unit,Value,MinValue
+0,M.1.2,Cargo Delivery Rate,cargoDeliverySuccessRate,Adaptability Simulation 1,TE7_TestData,cargoDeliverySuccessRate_Measurement,percentage,72.88,75

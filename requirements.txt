@@ -1,0 +1,7 @@
+numpy
+pandas==2.2.2
+plotly
+streamlit==1.39.0
+graphviz==0.20.3
+astropy==5.3.4
+polyastro @ https://github.com/poliastro/poliastro/archive/main.zip

@@ -1,0 +1,3 @@
+,Mission,Environment,EnvironmentalEntity
+0,Rover_Mission,Rover_Environment_Nominal,LocalDebris
+1,Rover_Mission,Rover_Environment_Nominal,LocalRadiation
