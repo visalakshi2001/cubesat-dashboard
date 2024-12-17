@@ -15,7 +15,6 @@ from astropy.time import Time
 
 import matplotlib.pyplot as plt
 
-@st.cache_data()
 def orbitfunc():
     st.title("Orbit")
 
@@ -83,7 +82,7 @@ def orbitfunc():
     fig1 = plotly_orbit_plotter(
         orbits.values(),
         attractor,
-        _labels=orbits.keys(),
+        labels=orbits.keys(),
         positions=positions
     )
     st.plotly_chart(fig1, use_container_width=True)
@@ -231,8 +230,7 @@ def get_orbit_parameters(_attractor, orbit_name, altitude=500.0, ecc=0.0, inclin
     # return orbit
     return orbit_name
 
-@st.cache_data()
-def plotly_orbit_plotter(_orbit_list, _attractor, positions=None, _labels=None):
+def plotly_orbit_plotter(orbit_list, attractor, positions=None, labels=None):
     """
     Plots a list of orbits in 3D using plotly.
     Parameters:
@@ -250,10 +248,10 @@ def plotly_orbit_plotter(_orbit_list, _attractor, positions=None, _labels=None):
     """
     fig = make_subplots(rows=1, cols=1, specs=[[{"type": "scatter3d"}]])
 
-    if _labels is None:
-        _labels = ["Orbit"] * len(_orbit_list)
+    if labels is None:
+        labels = ["Orbit"] * len(orbit_list)
 
-    for orbit, label in zip(_orbit_list, _labels):
+    for orbit, label in zip(orbit_list, labels):
         r = orbit.sample().xyz.T
         x, y, z = r[:, 0].to(u.km).value, r[:, 1].to(u.km).value, r[:, 2].to(u.km).value
         fig.add_trace(
@@ -291,11 +289,11 @@ def plotly_orbit_plotter(_orbit_list, _attractor, positions=None, _labels=None):
     N_lon = int(texture.shape[1])
     thetas = np.linspace(0, 2 * np.pi, N_lat)
     phis = np.linspace(0, np.pi, N_lon)
-    radius_equatorial = _attractor.R.to(u_rad).value
-    if _attractor.R_polar is None:
+    radius_equatorial = attractor.R.to(u_rad).value
+    if attractor.R_polar is None:
         radius_polar = radius_equatorial
     else:
-        radius_polar = _attractor.R_polar.to(u_rad).value
+        radius_polar = attractor.R_polar.to(u_rad).value
     
     
     x_center = radius_equatorial * np.outer(np.cos(thetas), np.sin(phis))
