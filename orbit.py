@@ -17,7 +17,7 @@ import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import matplotlib.pyplot as plt
 
-@st.cache(suppress_st_warning=True)
+@st.cache_data()
 def orbitfunc():
     st.title("Orbit")
 
@@ -107,7 +107,7 @@ def orbitfunc():
 #     )
 #     return Time(date, scale="utc")
 
-@st.cache(suppress_st_warning=True)
+@st.cache_data()
 def define_main_attractors():
     """Returns a dictionary of the main attractors in the solar system."""
     return {
@@ -124,7 +124,7 @@ def define_main_attractors():
         "Sun": Sun,
     }
 
-@st.cache(suppress_st_warning=True)
+@st.cache_data()
 def semimajor_axis_from_periapsis(periapsis, eccentricity, attractor_radius):
     """
     Calculate the semi-major axis of an orbit from its periapsis distance and eccentricity.
@@ -150,8 +150,8 @@ def semimajor_axis_from_periapsis(periapsis, eccentricity, attractor_radius):
     return semi_major_axis_km
 
 
-@st.cache(suppress_st_warning=True)
-def get_orbit_parameters(attractor, orbit_name, altitude=500.0, ecc=0.0, inclination=45.0, raan=0.0, argp=0.0, nu=0.0):
+@st.cache_data()
+def get_orbit_parameters(_attractor, orbit_name, altitude=500.0, ecc=0.0, inclination=45.0, raan=0.0, argp=0.0, nu=0.0):
     """Returns the orbit parameters for a given orbit name."""
     # define any orbit based on streamlit inputs for all orbit parameters
     # orbit_periapsis = st.number_input(
@@ -213,14 +213,14 @@ def get_orbit_parameters(attractor, orbit_name, altitude=500.0, ecc=0.0, inclina
     # altitude of 465km (SMA = 6378+465)
     orbit_periapsis = 465
     orbit_ecc = 0
-    orbit_a = semimajor_axis_from_periapsis(orbit_periapsis,orbit_ecc, attractor.R.to(u.m).value)
+    orbit_a = semimajor_axis_from_periapsis(orbit_periapsis,orbit_ecc, _attractor.R.to(u.m).value)
     orbit_inclination = 45
     orbit_raan = 10
     orbit_argp = 0
     orbit_nu = nu
 
     orbit_name = (
-        attractor,
+        _attractor,
         orbit_a * u.km,
         orbit_ecc * u.one,
         orbit_inclination * u.deg,
@@ -233,8 +233,8 @@ def get_orbit_parameters(attractor, orbit_name, altitude=500.0, ecc=0.0, inclina
     # return orbit
     return orbit_name
 
-@st.cache(suppress_st_warning=True)
-def plotly_orbit_plotter(orbit_list, attractor, positions=None, labels=None):
+@st.cache_data()
+def plotly_orbit_plotter(_orbit_list, attractor, positions=None, labels=None):
     """
     Plots a list of orbits in 3D using plotly.
     Parameters:
@@ -253,9 +253,9 @@ def plotly_orbit_plotter(orbit_list, attractor, positions=None, labels=None):
     fig = make_subplots(rows=1, cols=1, specs=[[{"type": "scatter3d"}]])
 
     if labels is None:
-        labels = ["Orbit"] * len(orbit_list)
+        labels = ["Orbit"] * len(_orbit_list)
 
-    for orbit, label in zip(orbit_list, labels):
+    for orbit, label in zip(_orbit_list, labels):
         r = orbit.sample().xyz.T
         x, y, z = r[:, 0].to(u.km).value, r[:, 1].to(u.km).value, r[:, 2].to(u.km).value
         fig.add_trace(
