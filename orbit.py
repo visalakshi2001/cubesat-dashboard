@@ -232,7 +232,7 @@ def get_orbit_parameters(_attractor, orbit_name, altitude=500.0, ecc=0.0, inclin
     return orbit_name
 
 @st.cache_data()
-def plotly_orbit_plotter(_orbit_list, attractor, positions=None, labels=None):
+def plotly_orbit_plotter(_orbit_list, _attractor, positions=None, labels=None):
     """
     Plots a list of orbits in 3D using plotly.
     Parameters:
@@ -291,11 +291,11 @@ def plotly_orbit_plotter(_orbit_list, attractor, positions=None, labels=None):
     N_lon = int(texture.shape[1])
     thetas = np.linspace(0, 2 * np.pi, N_lat)
     phis = np.linspace(0, np.pi, N_lon)
-    radius_equatorial = attractor.R.to(u_rad).value
-    if attractor.R_polar is None:
+    radius_equatorial = _attractor.R.to(u_rad).value
+    if _attractor.R_polar is None:
         radius_polar = radius_equatorial
     else:
-        radius_polar = attractor.R_polar.to(u_rad).value
+        radius_polar = _attractor.R_polar.to(u_rad).value
     
     
     x_center = radius_equatorial * np.outer(np.cos(thetas), np.sin(phis))
