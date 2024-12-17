@@ -4,4 +4,5 @@ plotly
 streamlit==1.39.0
 graphviz==0.20.3
 astropy
+llvmlite @ https://github.com/numba/llvmlite/releases/download/v0.43.0/llvmlite-0.43.0.tar.gz
 poliastro @ https://github.com/poliastro/poliastro/archive/main.zip

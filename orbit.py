@@ -13,8 +13,6 @@ from poliastro.twobody import Orbit
 from poliastro.core.elements import coe2rv
 from astropy.time import Time
 
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
 import matplotlib.pyplot as plt
 
 @st.cache_data()
