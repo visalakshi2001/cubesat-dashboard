@@ -196,7 +196,7 @@ def get_orbit_parameters(_attractor, orbit_name, altitude=500.0, ecc=0.0, inclin
 
     # "Orbit inclination [deg]"
     # Inclination of the orbit with respect to the equatorial plane of the Planet. 0.0 for equatorial orbits, 90.0 for polar orbits."
-    orbit_inclination = 45
+    orbit_inclination = 55
 
     # "Orbit RAAN [deg]",
     # The Right Ascension of the Ascending Node of the trajectory orbit is the angle between the ascending node and the vernal equinox.

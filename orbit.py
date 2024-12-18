@@ -36,18 +36,20 @@ def orbitfunc():
 
 
     orbits_df = pd.DataFrame(
-        {
-            "Semi-major axis (km)": [orbit.a.to(u.km).value for orbit in orbits.values()],
-            "Eccentricity": [orbit.ecc.value for orbit in orbits.values()],
-            "Periapsis from surface (km)": [(orbit.a.to(u.km).value * (1 - orbit.ecc.value) - attractor.R.to(u.km).value) for orbit in orbits.values()],
-            "Apoapsis from surface (km)": [(orbit.a.to(u.km).value * (1 + orbit.ecc.value) - attractor.R.to(u.km).value) for orbit in orbits.values()],
+        {   
+            "Altitude (km)": 465,
+            "Semi-major axis (km)": 6378+465,
+            # "Semi-major axis (km)": [orbit.a.to(u.km).value for orbit in orbits.values()],
             "Inclination (deg)": [orbit.inc.to(u.deg).value for orbit in orbits.values()],
-            "RAAN (deg)": [orbit.raan.to(u.deg).value for orbit in orbits.values()],
+            "Eccentricity": [orbit.ecc.value for orbit in orbits.values()],
+            # "Periapsis from surface (km)": [(orbit.a.to(u.km).value * (1 - orbit.ecc.value) - attractor.R.to(u.km).value) for orbit in orbits.values()],
+            # "Apoapsis from surface (km)": [(orbit.a.to(u.km).value * (1 + orbit.ecc.value) - attractor.R.to(u.km).value) for orbit in orbits.values()],
+            "Longitude of Ascending Node (deg)": [orbit.raan.to(u.deg).value for orbit in orbits.values()],
             "Argument of periapsis (deg)": [
                 orbit.argp.to(u.deg).value for orbit in orbits.values()
             ],
-            "True anomaly (deg)": [orbit.nu.to(u.deg).value for orbit in orbits.values()],
-            "Period (s)": [orbit.period.to(u.s).value for orbit in orbits.values()],
+            # "True anomaly (deg)": [orbit.nu.to(u.deg).value for orbit in orbits.values()],
+            # "Period (s)": [orbit.period.to(u.s).value for orbit in orbits.values()],
             # "Epoch": [orbit.epoch.iso for orbit in orbits.values()],
         },
         index=orbits.keys(),
@@ -87,7 +89,7 @@ def orbitfunc():
     
     with cols[1]:
         with st.expander("CubeSat Orbit Details", expanded=True):
-            st.dataframe(orbits_df.T.reset_index().rename(columns={'index':'Orbit Properties' ,'CubeSat Orbit': 'values'}), 
+            st.dataframe(orbits_df.T.reset_index().rename(columns={'index':'Orbit Properties' ,'CubeSat Orbit': 'Values'}), 
                          hide_index=True, use_container_width=True)
         fig = plot_decay_graph()
         st.pyplot(fig, use_container_width=True)
