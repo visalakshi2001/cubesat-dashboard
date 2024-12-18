@@ -225,19 +225,21 @@ def dashresults():
 def dashreqs():
     st.subheader("Requirements Summary", divider="orange")
     breakdown = pd.read_csv("reports/cubesatrequirements.csv")
-    # breakdown = 
+    breakdown = breakdown.drop(columns=["Verification Status", "Results"]).copy()
 
     cols = st.columns([0.7,0.15])
 
-    st.dataframe(breakdown.drop(columns=["Results"]).style. \
-                 applymap(lambda x: f'background-color: {more_colors["green"]}' if x == "PASS" \
-                           else (
-                               f'background-color: {more_colors["red"]}' if x == "FAIL"   
-                               else f'background-color: {more_colors["amber"]}'
-                           ), 
-                          subset=["Verification Status"]). \
-                applymap(lambda x: 'color: black'), 
-                 use_container_width=True, hide_index=True)
+    # st.dataframe(breakdown.drop(columns=["Results"]).style. \
+    #              applymap(lambda x: f'background-color: {more_colors["green"]}' if x == "PASS" \
+    #                        else (
+    #                            f'background-color: {more_colors["red"]}' if x == "FAIL"   
+    #                            else f'background-color: {more_colors["amber"]}'
+    #                        ), 
+    #                       subset=["Verification Status"]). \
+    #             applymap(lambda x: 'color: black'), 
+    #              use_container_width=True, hide_index=True)
+
+    st.dataframe(breakdown, hide_index=True, use_container_width=True)
     
     cont = st.container(border=True)
     cont.subheader("Warnings")
@@ -245,15 +247,15 @@ def dashreqs():
         req = row["Requirement Name"]
         verified = row["Verified By"]
         satisfied = row["Satisfied By"]
-        result = row["Results"]
-        status = row["Verification Status"]
+        # result = row["Results"]
+        # status = row["Verification Status"]
 
         if pd.isna(verified):
             cont.warning(f"Requirement {req} is not verified by any analysis", icon="⚠️")
         if pd.isna(satisfied):
             cont.warning(f"Requirement {req} is not satisfied by any mission element", icon="⚠️")
-        if pd.notna(verified) and status != "PASS":
-            cont.error(f"Requirement {req} has not PASSED the analysis")
+        # if pd.notna(verified) and status != "PASS":
+        #     cont.error(f"Requirement {req} has not PASSED the analysis")
 
     req_choice = st.selectbox("Select Requirement by Name", options=breakdown["Requirement Name"], index=1)
     target_req = breakdown[breakdown["Requirement Name"] == req_choice]
@@ -265,8 +267,8 @@ def dashreqs():
         req = row["Requirement Name"]
         verified = row["Verified By"]
         satisfied = row["Satisfied By"]
-        result = row["Results"]
-        status = row["Verification Status"]
+        # result = row["Results"]
+        # status = row["Verification Status"]
 
         if pd.notna(reqid):
             dot.node(reqid)
@@ -284,15 +286,15 @@ def dashreqs():
             if satisfied not in dot.body:
                 dot.node(satisfied)
             dot.edge(req, satisfied, label="satisfied by")
-        if pd.notna(result):
-            if result not in dot.body:
-                dot.node(result)
-            dot.edge(verified, result, label="analysis output")
+        # if pd.notna(result):
+        #     if result not in dot.body:
+        #         dot.node(result)
+        #     dot.edge(verified, result, label="analysis output")
         
-        if pd.notna(result) and pd.notna(status):
-            if status not in dot.body:
-                dot.node(status, shape="box")
-            dot.edge(result, status, label="verification status")
+        # if pd.notna(result) and pd.notna(status):
+        #     if status not in dot.body:
+        #         dot.node(status, shape="box")
+        #     dot.edge(result, status, label="verification status")
             
     cols = st.columns([0.23 ,0.5])
     cols[0].graphviz_chart(dot, True)
