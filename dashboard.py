@@ -224,7 +224,7 @@ def dashresults():
 # ########## REQUIREMENTS VIEW FUNCTION
 def dashreqs():
     st.subheader("Requirements Summary", divider="orange")
-    breakdown = pd.read_csv("reports/norasatrequirements.csv")
+    breakdown = pd.read_csv("reports/cubesatrequirements.csv")
 
     cols = st.columns([0.7,0.15])
 
@@ -259,33 +259,39 @@ def dashreqs():
 
     dot = graphviz.Digraph(comment='Hierarchy', strict=True)
     for _, row in target_req.iterrows():
-            req = row["Requirement Name"]
-            verified = row["Verified By"]
-            satisfied = row["Satisfied By"]
-            result = row["Results"]
-            status = row["Verification Status"]
+            
+        reqid = row["Requirement ID"]
+        req = row["Requirement Name"]
+        verified = row["Verified By"]
+        satisfied = row["Satisfied By"]
+        result = row["Results"]
+        status = row["Verification Status"]
 
-            if pd.notna(req):
+        if pd.notna(reqid):
+            dot.node(reqid)
+        if pd.notna(req):
+            if req not in dot.body:
                 dot.node(req)
+            dot.edge(reqid, req, label="has name")
 
-            if pd.notna(verified):
-                if verified not in dot.body:
-                    dot.node(verified)
-                dot.edge(req, verified, label="verified by")
-            
-            if pd.notna(satisfied):
-                if satisfied not in dot.body:
-                    dot.node(satisfied)
-                dot.edge(req, satisfied, label="satisfied by")
-            if pd.notna(result):
-                if result not in dot.body:
-                    dot.node(result)
-                dot.edge(verified, result, label="analysis output")
-            
-            if pd.notna(result) and pd.notna(status):
-                if status not in dot.body:
-                    dot.node(status, shape="box")
-                dot.edge(result, status, label="verification status")
+        if pd.notna(verified):
+            if verified not in dot.body:
+                dot.node(verified)
+            dot.edge(req, verified, label="verified by")
+        
+        if pd.notna(satisfied):
+            if satisfied not in dot.body:
+                dot.node(satisfied)
+            dot.edge(req, satisfied, label="satisfied by")
+        if pd.notna(result):
+            if result not in dot.body:
+                dot.node(result)
+            dot.edge(verified, result, label="analysis output")
+        
+        if pd.notna(result) and pd.notna(status):
+            if status not in dot.body:
+                dot.node(status, shape="box")
+            dot.edge(result, status, label="verification status")
             
     cols = st.columns([0.23 ,0.5])
     cols[0].graphviz_chart(dot, True)

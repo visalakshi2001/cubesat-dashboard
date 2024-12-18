@@ -5,3 +5,4 @@ cubesat/
 .ipynb_checkpoints/
 */.ipynb_checkpoints/
 notebooks/
+test.py
