@@ -81,7 +81,7 @@ def orbitfunc():
             orbits.values(),
             attractor,
             labels=orbits.keys(),
-            positions=positions
+            # positions=positions
         )
         st.plotly_chart(fig1, use_container_width=True)
     
