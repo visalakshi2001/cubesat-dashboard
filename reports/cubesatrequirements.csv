@@ -1,6 +1,6 @@
 Requirement ID,Requirement Name,Description,Satisfied By,Verified By,Results,Verification Status
 MR1,Deorbit,The cubesat shall deorbit within 25 years of the end of its mission,CATSAT_Mission,VA1.2_Deortbit_Analysis,,TBD
-MR2,Downlink,The cubesat shall support a downlink capacity of at least 5 GB per day to the ground segment,CATSAT_Mission,,,PASS
-MR3,Power,The cubesat shall provide enough power to permanently power all subsystems,CATSAT_Mission,,,PASS
+MR2,Downlink,The cubesat shall fdownload at least 5 GB per day to the ground segment upon command,CATSAT_Mission,,,PASS
+MR3,Power,The cubesat shall continuously operate during its orbit,CATSAT_Mission,,,PASS
 MR4,Image Resolution,The cubesat shall capture images of the Earth at a resolution of 40m per pixel,CATSAT_Mission,,,PASS
-MR5,Pointing Accuracy,The cubesat shall maintain a pointing accuracy of ±2 degrees for the payload during data collection,CATSAT_Mission,,,PASS
+MR5,Pointing Accuracy,The cubesat shall maintain a pointing accuracy of ±2 degrees with respect to the imaged location during data collection,CATSAT_Mission,,,PASS
