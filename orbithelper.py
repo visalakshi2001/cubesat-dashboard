@@ -18,7 +18,7 @@ def plot_decay_graph():
 
     decaydf = pd.read_csv('reports/decay.csv')
     
-    fig = plt.figure(figsize=(8,5))
+    fig = plt.figure(figsize=(12,5))
     ax = fig.add_subplot(111)
     
     ax.plot(decaydf['times'].values, decaydf['altitudes'].values, label="Altitude vs Time")
