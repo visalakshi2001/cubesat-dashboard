@@ -9,13 +9,13 @@ from issues import sysissues
 from orbit import orbitfunc
 
 # Set page configuration, page title is the titlebar content, icon also appears on title bar
-st.set_page_config(page_title="Dashboard", page_icon="🍩", layout="wide")
+st.set_page_config(page_title="CatSat Dashboard", page_icon="🛰️", layout="wide")
 
 # main entrypoint of the application, gets called when the app runs
 def main():
 
     # For the heading on the page
-    st.header("🧮 Dashboard", divider="red")
+    st.header("🛰️ CubeSat Mission Dashboard", divider="red")
 
     # create the list of tabs in a list
     TABS = ["Requirements", "Architecture", "Orbit",  "Test Strategy", "Warnings/Issues"]
