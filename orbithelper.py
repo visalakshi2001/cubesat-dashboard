@@ -17,11 +17,14 @@ def plot_decay_graph():
 
 
     decaydf = pd.read_csv('reports/decay.csv')
+    times = decaydf['times'].values
+    altitudes = decaydf['altitudes'].values
     
     fig = plt.figure(figsize=(12,5))
     ax = fig.add_subplot(111)
     
-    ax.plot(decaydf['times'].values, decaydf['altitudes'].values, label="Altitude vs Time")
+    ax.plot(times, altitudes, label="Altitude vs Time")
+    plt.annotate("t_d=%0.2f years" % times[-1], xy=(1, times[-1]), xytext=(times[-1]-3.3,0))
     plt.xlabel('Time (years)')
     plt.ylabel('Altitude (km)')
     plt.title('Orbital Decay of Cubesat')
