@@ -68,16 +68,20 @@ def plotly_orbit_plotter(orbit_list, attractor, positions=None, labels=None):
                 z=z,
                 mode="lines",
                 name=label,
-                line=dict(color='red', width=3)
+                showlegend=True,
+                line=dict(color='red', width=5)
             )
         )
 
-        # fig.update_traces(marker=dict(
-        #     color='lightblue',
-        #     size=10,
-        #     line=dict(color='purple',
-        #             width=3
-        #     )))
+        # fig.update_traces(
+        #     # marker=dict(
+        #     #     color='lightblue',
+        #     #     size=10),
+        #     line=dict(
+        #         color='purple',
+        #         width=12
+        #     )
+        # )
 
     if positions is not None:
         for pos_label, pos_data in positions.items():
