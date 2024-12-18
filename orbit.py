@@ -49,7 +49,7 @@ def orbitfunc():
                 orbit.argp.to(u.deg).value for orbit in orbits.values()
             ],
             # "True anomaly (deg)": [orbit.nu.to(u.deg).value for orbit in orbits.values()],
-            # "Period (s)": [orbit.period.to(u.s).value for orbit in orbits.values()],
+            "Period (s)": [orbit.period.to(u.s).value for orbit in orbits.values()],
             # "Epoch": [orbit.epoch.iso for orbit in orbits.values()],
         },
         index=orbits.keys(),
