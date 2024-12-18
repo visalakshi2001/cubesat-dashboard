@@ -225,6 +225,7 @@ def dashresults():
 def dashreqs():
     st.subheader("Requirements Summary", divider="orange")
     breakdown = pd.read_csv("reports/cubesatrequirements.csv")
+    # breakdown = 
 
     cols = st.columns([0.7,0.15])
 

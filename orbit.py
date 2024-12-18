@@ -53,7 +53,7 @@ def orbitfunc():
         index=orbits.keys(),
     )
 
-    cols = st.columns([0.4,0.6])
+    cols = st.columns(2)
     # st.dataframe(orbits_df.T, use_container_width=True)
 
     # Create an instance of OrbitElements
