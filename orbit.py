@@ -87,7 +87,8 @@ def orbitfunc():
     
     with cols[1]:
         with st.expander("CubeSat Orbit Details", expanded=True):
-            st.dataframe(orbits_df.T, use_container_width=True)
+            st.dataframe(orbits_df.T.reset_index().rename(columns={'index':'Orbit Properties' ,'CubeSat Orbit': 'values'}), 
+                         hide_index=True, use_container_width=True)
         fig = plot_decay_graph()
         st.pyplot(fig, use_container_width=True)
 
