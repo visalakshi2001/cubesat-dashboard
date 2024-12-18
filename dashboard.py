@@ -224,7 +224,7 @@ def dashresults():
 # ########## REQUIREMENTS VIEW FUNCTION
 def dashreqs():
     st.subheader("Requirements Summary", divider="orange")
-    breakdown = pd.read_csv("reports/cubesatrequirements.csv")
+    breakdown = pd.read_csv("/reports/cubesatrequirements.csv")
 
     cols = st.columns([0.7,0.15])
 

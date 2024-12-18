@@ -3,11 +3,11 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
-
 import matplotlib.pyplot as plt
-from poliastro.twobody import Orbit
 from orbithelper import (plot_decay_graph, get_orbit_parameters,  
                         GetPositionVectors, plotly_orbit_plotter)
+
+from poliastro.twobody import Orbit
 from poliastro.bodies import Earth
 from poliastro.bodies import *
 
@@ -53,7 +53,7 @@ def orbitfunc():
         index=orbits.keys(),
     )
 
-    cols = st.columns(2)
+    cols = st.columns([0.4,0.6])
     # st.dataframe(orbits_df.T, use_container_width=True)
 
     # Create an instance of OrbitElements
@@ -86,8 +86,12 @@ def orbitfunc():
         st.plotly_chart(fig1, use_container_width=True)
     
     with cols[1]:
-        st.dataframe(orbits_df.T, use_container_width=True)
-        # fig2 = plot_decay_graph()
-        # st.plotly_chart(fig2, use_container_width=True)
+        with st.expander("CubeSat Orbit Details", expanded=True):
+            st.dataframe(orbits_df.T, use_container_width=True)
+        fig = plot_decay_graph()
+        st.pyplot(fig, use_container_width=True)
+
+    
+    
 
  

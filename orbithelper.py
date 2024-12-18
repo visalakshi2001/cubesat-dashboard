@@ -4,9 +4,8 @@ import pandas as pd
 
 import streamlit as st
 from plotly.subplots import make_subplots
-from poliastro.bodies import (Earth,Moon,Mars,Jupiter,Saturn)
 from poliastro.bodies import *
-
+import matplotlib.pyplot as plt
 from poliastro.core.elements import coe2rv
 from astropy.time import Time
 import plotly.graph_objs as go
@@ -19,9 +18,15 @@ def plot_decay_graph():
 
     decaydf = pd.read_csv('reports/decay.csv')
     
-    fig = px.line(data_frame=decaydf, x='times', y='altitudes', title='Orbital Decay of Cubesat', hover_data=None)
-
-    fig.update_layout(xaxis_title="Time (years)", yaxis_title="Altitude (km)")
+    fig = plt.figure(figsize=(12,5))
+    ax = fig.add_subplot(111)
+    
+    ax.plot(decaydf['times'].values, decaydf['altitudes'].values, label="Altitude vs Time")
+    plt.xlabel('Time (years)')
+    plt.ylabel('Altitude (km)')
+    plt.title('Orbital Decay of Cubesat')
+    plt.grid(True)
+    plt.legend()
 
 
     return fig
